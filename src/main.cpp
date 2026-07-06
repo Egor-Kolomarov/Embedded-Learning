@@ -1,13 +1,14 @@
 #include <Arduino.h>
 
-bool alarm = false;
-
+int x = 0;
 void setup() {
-    Serial.begin(115200);
+    Serial.begin(105200);
 }
 
+
 void loop() {
-    if (!alarm) {
-        Serial.println("Everything OK");
+    while (x < 5) {
+        Serial.println(x);
+        x++;
     }
 }
