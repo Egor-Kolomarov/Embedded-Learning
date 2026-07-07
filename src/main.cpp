@@ -1,22 +1,24 @@
-#define SIZE 5
+#define SIZE 6
 #include <Arduino.h>
 
-int marks[SIZE] = {5, 4, 5, 3, 4};
+int numbers[SIZE] = {18, 7, 42, 15, 29, 11};
 
-int sumMassive(int a[SIZE]) {
-    int sum = 0;
-    for (int i = 0; i < SIZE; i++) {
-        sum += a[i];
+int findMax(int arr[], int size) {
+    int max = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
     }
-    return sum;
+    return max;
 }
 
 void setup() {
     Serial.begin(105200);
 }
 
+
 void loop() {
-    int res = sumMassive(marks);
-    Serial.println(res);
+    Serial.println(findMax(numbers, SIZE));
     delay(1000);
 }
