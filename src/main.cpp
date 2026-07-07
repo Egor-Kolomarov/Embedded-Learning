@@ -1,13 +1,16 @@
-
 #include <Arduino.h>
 
-int x = 15;
-int y = 70;
+struct Car
+{
+    String brand;
+    int year;
+};
 
-void swap(int &a, int &b) {
-    int temp = a;
-    a = b;
-    b = temp
+Car car;
+
+void printCar(const Car &car) {
+    Serial.println(car.brand);
+    Serial.println(car.year);
 }
 
 void setup() {
@@ -16,7 +19,9 @@ void setup() {
 
 
 void loop() {
-    swap(x, y);
-    Serial.println(x);
-    delay(1000);
-}  
+    
+    car.brand = "Toyota";
+    car.year = 2020;
+
+    printCar(car);
+}
