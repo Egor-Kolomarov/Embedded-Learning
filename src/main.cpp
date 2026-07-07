@@ -1,14 +1,8 @@
 
 #include <Arduino.h>
 
-struct Student {
-    String name;
-    int age;
-    float averageMark;
-};
-
-Student students[3];
-
+int value = 50;
+int *ptr = &value;
 
 void setup() {
     Serial.begin(105200);
@@ -16,21 +10,8 @@ void setup() {
 
 
 void loop() {
-    students[0].name = "Egor";
-    students[0].age = 18;
-    students[0].averageMark = 100.0;
-
-    students[1].name = "Alex";
-    students[1].age = 18;
-    students[1].averageMark = 50.0;
-
-    students[2].name = "Ivan";
-    students[2].age = 19;
-    students[2].averageMark = 70.0;
-
-    for (int i = 0; i < 3; i ++) {
-        Serial.println(students[i].name);
-        Serial.println(students[i].age);
-        Serial.println(students[i].averageMark);
-    }
+    *ptr = 100;
+    Serial.println(value);
+    Serial.println((uintptr_t)ptr, HEX);
+    Serial.println(*ptr);
 } 
