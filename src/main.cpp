@@ -1,25 +1,13 @@
 
 #include <Arduino.h>
 
-int numbers[7] = {3, 8, 12, 15, 22, 27, 31};
+struct Student {
+    String name;
+    int age;
+    float averageMark;
+};
 
-bool findNumber(int arr[], int size, int value) {
-    for (int i = 0; i < size; i ++) {
-        if (arr[i] == value) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void printResult(bool result) {
-    if (result) {
-        Serial.println("found");
-    }
-    else {
-        Serial.println("not found");
-    }
-}
+Student students[3];
 
 
 void setup() {
@@ -28,7 +16,21 @@ void setup() {
 
 
 void loop() {
-    bool res = findNumber(numbers, 7, 100);
-    printResult(res);
-    delay(1000);
-}
+    students[0].name = "Egor";
+    students[0].age = 18;
+    students[0].averageMark = 100.0;
+
+    students[1].name = "Alex";
+    students[1].age = 18;
+    students[1].averageMark = 50.0;
+
+    students[2].name = "Ivan";
+    students[2].age = 19;
+    students[2].averageMark = 70.0;
+
+    for (int i = 0; i < 3; i ++) {
+        Serial.println(students[i].name);
+        Serial.println(students[i].age);
+        Serial.println(students[i].averageMark);
+    }
+} 
