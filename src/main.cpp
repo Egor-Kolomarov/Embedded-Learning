@@ -1,30 +1,26 @@
 
 #include <Arduino.h>
 
-int matrix[3][3] =
-{
-    {1,2,3},
-    {4,5,6},
-    {7,8,9}
-};
+int numbers[7] = {3, 8, 12, 15, 22, 27, 31};
 
-void printMatrix(int m[][3], int row, int col) {
-    for (int r = 0; r < row; r ++) {
-        for (int c = 0; c < col; c ++) {
-            Serial.print(m[r][c]);
+bool findNumber(int arr[], int size, int value) {
+    for (int i = 0; i < size; i ++) {
+        if (arr[i] == value) {
+            return true;
         }
+    }
+    return false;
+}
+
+void printResult(bool result) {
+    if (result) {
+        Serial.println("found");
+    }
+    else {
+        Serial.println("not found");
     }
 }
 
-int sumMatrix(int m[][3], int row, int col) {
-    int sum = 0;
-    for (int r = 0; r < row; r ++) {
-        for (int c = 0; c < col; c ++) {
-            sum += m[r][c];
-        }
-    }
-    return sum;
-}
 
 void setup() {
     Serial.begin(105200);
@@ -32,8 +28,7 @@ void setup() {
 
 
 void loop() {
-    matrix[1][1] = 100;
-    printMatrix(matrix, 3, 3);
-    Serial.println(sumMatrix(matrix, 3, 3));
+    bool res = findNumber(numbers, 7, 100);
+    printResult(res);
     delay(1000);
 }
