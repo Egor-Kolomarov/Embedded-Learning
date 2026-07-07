@@ -1,13 +1,13 @@
 
 #include <Arduino.h>
 
-int x = 7;
-int y = 15;
+int x = 15;
+int y = 70;
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+void swap(int &a, int &b) {
+    int temp = a;
+    a = b;
+    b = temp
 }
 
 void setup() {
@@ -16,6 +16,7 @@ void setup() {
 
 
 void loop() {
-    swap(&x,&y);
+    swap(x, y);
     Serial.println(x);
+    delay(1000);
 }  
