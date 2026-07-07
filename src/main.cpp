@@ -1,7 +1,14 @@
+#define SIZE 5
 #include <Arduino.h>
 
-int multiply(int a, int b) {
-    return a * b;
+int marks[SIZE] = {5, 4, 5, 3, 4};
+
+int sumMassive(int a[SIZE]) {
+    int sum = 0;
+    for (int i = 0; i < SIZE; i++) {
+        sum += a[i];
+    }
+    return sum;
 }
 
 void setup() {
@@ -9,6 +16,7 @@ void setup() {
 }
 
 void loop() {
-    Serial.println(multiply(4, 5));
+    int res = sumMassive(marks);
+    Serial.println(res);
     delay(1000);
 }
