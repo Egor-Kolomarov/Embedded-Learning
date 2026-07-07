@@ -1,8 +1,14 @@
 
 #include <Arduino.h>
 
-int value = 50;
-int *ptr = &value;
+int x = 7;
+int y = 15;
+
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
 void setup() {
     Serial.begin(105200);
@@ -10,8 +16,6 @@ void setup() {
 
 
 void loop() {
-    *ptr = 100;
-    Serial.println(value);
-    Serial.println((uintptr_t)ptr, HEX);
-    Serial.println(*ptr);
-} 
+    swap(&x,&y);
+    Serial.println(x);
+}  
