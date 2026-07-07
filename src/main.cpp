@@ -1,14 +1,14 @@
 #include <Arduino.h>
 
-int x = 0;
+int multiply(int a, int b) {
+    return a * b;
+}
+
 void setup() {
     Serial.begin(105200);
 }
 
-
 void loop() {
-    while (x < 5) {
-        Serial.println(x);
-        x++;
-    }
+    Serial.println(multiply(4, 5));
+    delay(1000);
 }
