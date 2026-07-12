@@ -1,12 +1,24 @@
 #include <Arduino.h>
 
+const int buttonPin = 4;
+const int ledPin = 18;
+
+void printBut() {
+    Serial.println(digitalRead(buttonPin));
+    delay(500);
+}
 void setup() {
-    pinMode(2, OUTPUT);
+    Serial.begin(115200);
+    pinMode(buttonPin, INPUT_PULLUP);
+    pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
-    digitalWrite(2, HIGH);
-    delay(100);
-    digitalWrite(2, LOW);
-    delay(100);
+    if (digitalRead(buttonPin) == 0) {
+        digitalWrite(ledPin, HIGH);
+    }
+    else {
+        digitalWrite(ledPin, LOW);
+    }
+    printBut();    
 }
