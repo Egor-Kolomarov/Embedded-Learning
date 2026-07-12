@@ -1,11 +1,12 @@
 #include <Arduino.h>
-#include "MathFunctions.h"
 
 void setup() {
-    Serial.begin(105200);
+    pinMode(2, OUTPUT);
 }
 
-
 void loop() {
-    Serial.println(multiply(6, 7));
+    digitalWrite(2, HIGH);
+    delay(100);
+    digitalWrite(2, LOW);
+    delay(100);
 }
