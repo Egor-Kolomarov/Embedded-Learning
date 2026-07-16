@@ -1,29 +1,33 @@
 #include <Arduino.h>
 
 const int ledPin = 5;
-const int ptPin = 33;
-const int f = 5000;
-const int resolution = 8;
+const int butPin = 4;
 
-int adcToPwm(int a) {
-    int result = a >> 4;
-    return result;
+bool ledState = false;
+volatile bool buttonPressed = false;
+unsigned long previousTime = 1000;
+
+void IRAM_ATTR onButtonPressed() {
+    buttonPressed = true;
 }
 
 void setup() {
 
     Serial.begin(115200);
     pinMode(ledPin, OUTPUT);
-    ledcSetup(0, f, resolution);
-    ledcAttachPin(ledPin, 0);
-    
+    pinMode(butPin, INPUT_PULLUP);
+    attachInterrupt(butPin, onButtonPressed, FALLING);
+
 }
 
 void loop() {
-
-    int analogValue = analogRead(ptPin);
-    int value = adcToPwm(analogValue);
-
-    ledcWrite(0, value);
+    if (buttonPressed) {
+        if (millis() - previousTime >= 50) {
+            ledState = !ledState;
+            digitalWrite(ledPin, ledState);
+            buttonPressed = false;
+            previousTime = millis();
+        }
+    }   
 } 
  
